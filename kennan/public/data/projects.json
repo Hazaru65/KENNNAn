@@ -1,44 +1,163 @@
 [
   {
     "id": "sahil-yali",
-    "name": "Sahil Yal\u0131s\u0131",
-    "location": "\u0130zmir, T\u00fcrkiye",
+    "name": "Sahil Yalısı",
+    "location": "İzmir, Türkiye",
     "year": "2024",
-    "category": "Konut",
+    "category": "Ticari",
     "heroImage": "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1600&auto=format&fit=crop",
     "thumbnail": "https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=900&auto=format&fit=crop",
     "area": "4.200 m2",
-    "role": "Mimari Tasar\u0131m + Uygulama",
+    "role": "Mimari Tasarım + Uygulama",
     "software": "Revit, Rhino, Lumion",
     "story": [
-      "Denizle kurdu\u011fu ili\u015fki, yap\u0131n\u0131n her hatt\u0131nda ak\u0131\u015fkan bir ritim yarat\u0131r. Yap\u0131n\u0131n kurgusu, g\u00fcn \u0131\u015f\u0131\u011f\u0131n\u0131 i\u00e7eriye davet ederken r\u00fczgar\u0131n y\u00f6n\u00fcn\u00fc de dikkate al\u0131r.",
-      "Konutun ana omurgas\u0131 kuzeye do\u011fru bir galeriyle geni\u015fler. Zemin kat a\u00e7\u0131k ve yar\u0131 a\u00e7\u0131k hacimler aras\u0131nda esnek bir dola\u015f\u0131m sunar.",
-      "Malzeme se\u00e7iminde do\u011fal ta\u015f ve s\u0131cak ah\u015fap birlikte kullan\u0131ld\u0131. Bu ikili, mek\u00e2n\u0131n sade ama zamans\u0131z karakterini g\u00fc\u00e7lendirir."
+      "Denizle kurduğu ilişki, yapının her hattında akışkan bir ritim yaratır. Yapının kurgusu, gün ışığını içeriye davet ederken rüzgarın yönünü de dikkate alır.",
+      "Konutun ana omurgası kuzeye doğru bir galeriyle genişler. Zemin kat açık ve yarı açık hacimler arasında esnek bir dolaşım sunar.",
+      "Malzeme seçiminde doğal taş ve sıcak ahşap birlikte kullanıldı. Bu ikili, mekânın sade ama zamansız karakterini güçlendirir."
     ],
     "gallery": [
       "https://images.unsplash.com/photo-1502005097973-6a7082348e28?q=80&w=1600&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=1600&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1464146072230-91cabc968266?q=80&w=1600&auto=format&fit=crop",
+      "/uploads/sahil-yalisi/whatsapp-image-2026-02-11-at-20.56.05-1--1770834484841.jpeg"
     ],
     "topView": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1400&auto=format&fit=crop",
     "tourScenes": [
-      { "id": "giris", "title": "Giri\u015f Avlusu", "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop", "next": ["salon", "teras"] },
-      { "id": "salon", "title": "Salon", "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?q=80&w=1600&auto=format&fit=crop", "next": ["giris", "teras"] },
-      { "id": "teras", "title": "Teras", "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1600&auto=format&fit=crop", "next": ["giris"] }
+      {
+        "id": "giris",
+        "title": "Giriş Avlusu",
+        "image": "https://i.ibb.co/8gzk2bQq/Whats-App-Image-2026-02-11-at-20-56-05-1.jpg",
+        "next": [
+          "salon",
+          "teras"
+        ]
+      },
+      {
+        "id": "salon",
+        "title": "Salon",
+        "image": "https://ibb.co/pjWqZQkc",
+        "next": [
+          "giris",
+          "teras"
+        ]
+      },
+      {
+        "id": "teras",
+        "title": "Teras",
+        "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1600&auto=format&fit=crop",
+        "next": [
+          "giris"
+        ]
+      }
     ],
     "panoramaScenes": [
-      { "id": "giris", "name": "Giri\u015f Hol\u00fc", "imageUrl": "https://pannellum.org/images/cerro-toco-0.jpg", "position": { "x": 30, "y": 70 }, "hotspots": [{ "id": "h1", "targetSceneId": "salon", "yaw": 45, "pitch": 0, "label": "Salon" }, { "id": "h2", "targetSceneId": "mutfak", "yaw": -90, "pitch": 0, "label": "Mutfak" }] },
-      { "id": "salon", "name": "Salon", "imageUrl": "https://pannellum.org/images/alma.jpg", "position": { "x": 50, "y": 50 }, "hotspots": [{ "id": "h3", "targetSceneId": "giris", "yaw": -135, "pitch": 0, "label": "Giri\u015f" }, { "id": "h4", "targetSceneId": "teras", "yaw": 90, "pitch": 0, "label": "Teras" }, { "id": "h5", "targetSceneId": "mutfak", "yaw": -45, "pitch": 0, "label": "Mutfak" }] },
-      { "id": "mutfak", "name": "Mutfak", "imageUrl": "https://pannellum.org/images/bma-1.jpg", "position": { "x": 25, "y": 40 }, "hotspots": [{ "id": "h6", "targetSceneId": "giris", "yaw": 90, "pitch": 0, "label": "Giri\u015f" }, { "id": "h7", "targetSceneId": "salon", "yaw": 45, "pitch": 0, "label": "Salon" }] },
-      { "id": "teras", "name": "Teras", "imageUrl": "https://pannellum.org/images/jfk.jpg", "position": { "x": 75, "y": 35 }, "hotspots": [{ "id": "h8", "targetSceneId": "salon", "yaw": -90, "pitch": 0, "label": "Salon" }] }
+      {
+        "id": "giris",
+        "name": "Giriş Holü",
+        "imageUrl": "https://pannellum.org/images/cerro-toco-0.jpg",
+        "position": {
+          "x": 30,
+          "y": 70
+        },
+        "hotspots": [
+          {
+            "id": "h1",
+            "targetSceneId": "salon",
+            "yaw": 45,
+            "pitch": 0,
+            "label": "Salon"
+          },
+          {
+            "id": "h2",
+            "targetSceneId": "mutfak",
+            "yaw": -90,
+            "pitch": 0,
+            "label": "Mutfak"
+          }
+        ]
+      },
+      {
+        "id": "salon",
+        "name": "Salon",
+        "imageUrl": "https://pannellum.org/images/alma.jpg",
+        "position": {
+          "x": 50,
+          "y": 50
+        },
+        "hotspots": [
+          {
+            "id": "h3",
+            "targetSceneId": "giris",
+            "yaw": -135,
+            "pitch": 0,
+            "label": "Giriş"
+          },
+          {
+            "id": "h4",
+            "targetSceneId": "teras",
+            "yaw": 90,
+            "pitch": 0,
+            "label": "Teras"
+          },
+          {
+            "id": "h5",
+            "targetSceneId": "mutfak",
+            "yaw": -45,
+            "pitch": 0,
+            "label": "Mutfak"
+          }
+        ]
+      },
+      {
+        "id": "mutfak",
+        "name": "Mutfak",
+        "imageUrl": "https://pannellum.org/images/bma-1.jpg",
+        "position": {
+          "x": 25,
+          "y": 40
+        },
+        "hotspots": [
+          {
+            "id": "h6",
+            "targetSceneId": "giris",
+            "yaw": 90,
+            "pitch": 0,
+            "label": "Giriş"
+          },
+          {
+            "id": "h7",
+            "targetSceneId": "salon",
+            "yaw": 45,
+            "pitch": 0,
+            "label": "Salon"
+          }
+        ]
+      },
+      {
+        "id": "teras",
+        "name": "Teras",
+        "imageUrl": "https://pannellum.org/images/jfk.jpg",
+        "position": {
+          "x": 75,
+          "y": 35
+        },
+        "hotspots": [
+          {
+            "id": "h8",
+            "targetSceneId": "salon",
+            "yaw": -90,
+            "pitch": 0,
+            "label": "Salon"
+          }
+        ]
+      }
     ]
   },
   {
     "id": "kent-kulesi",
     "name": "Kent Kulesi",
-    "location": "Ankara, T\u00fcrkiye",
+    "location": "Ankara, Türkiye",
     "year": "2023",
     "category": "Ticari",
     "heroImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
@@ -47,9 +166,9 @@
     "role": "Konsept + Mimari",
     "software": "Revit, 3ds Max, Twinmotion",
     "story": [
-      "Kentin yo\u011fun dokusu i\u00e7inde y\u00fckselen kule, yal\u0131n bir siluet ve dengeli bir cephe ritmiyle tan\u0131mlan\u0131r.",
-      "\u0130\u00e7teki programlar katlara d\u00fczenli \u015fekilde da\u011f\u0131l\u0131rken ortak alanlar manzara odakl\u0131 kurgulanm\u0131\u015ft\u0131r.",
-      "Cephede kullan\u0131lan metal mesh, g\u00fcne\u015f kontrol\u00fcn\u00fc sa\u011flarken gece g\u00f6r\u00fcn\u00fcm\u00fcnde opak bir par\u0131lt\u0131 yarat\u0131r."
+      "Kentin yoğun dokusu içinde yükselen kule, yalın bir siluet ve dengeli bir cephe ritmiyle tanımlanır.",
+      "İçteki programlar katlara düzenli şekilde dağılırken ortak alanlar manzara odaklı kurgulanmıştır.",
+      "Cephede kullanılan metal mesh, güneş kontrolünü sağlarken gece görünümünde opak bir parıltı yaratır."
     ],
     "gallery": [
       "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1600&auto=format&fit=crop",
@@ -59,30 +178,116 @@
     ],
     "topView": "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1400&auto=format&fit=crop",
     "tourScenes": [
-      { "id": "lobi", "title": "Lobi", "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1600&auto=format&fit=crop", "next": ["atrium"] },
-      { "id": "atrium", "title": "Atrium", "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop", "next": ["lobi"] }
+      {
+        "id": "lobi",
+        "title": "Lobi",
+        "image": "https://ibb.co/pjWqZQkc",
+        "next": [
+          "atrium"
+        ]
+      },
+      {
+        "id": "atrium",
+        "title": "Atrium",
+        "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
+        "next": [
+          "lobi"
+        ]
+      }
     ],
     "panoramaScenes": [
-      { "id": "lobi", "name": "Lobi", "imageUrl": "https://pannellum.org/images/cerro-toco-0.jpg", "position": { "x": 50, "y": 80 }, "hotspots": [{ "id": "h1", "targetSceneId": "atrium", "yaw": 0, "pitch": 0, "label": "Atrium" }, { "id": "h2", "targetSceneId": "ofis", "yaw": 90, "pitch": 0, "label": "Ofis Alan\u0131" }] },
-      { "id": "atrium", "name": "Atrium", "imageUrl": "https://pannellum.org/images/alma.jpg", "position": { "x": 50, "y": 50 }, "hotspots": [{ "id": "h3", "targetSceneId": "lobi", "yaw": 180, "pitch": 0, "label": "Lobi" }, { "id": "h4", "targetSceneId": "ofis", "yaw": 45, "pitch": 0, "label": "Ofis Alan\u0131" }] },
-      { "id": "ofis", "name": "Ofis Alan\u0131", "imageUrl": "https://pannellum.org/images/bma-1.jpg", "position": { "x": 75, "y": 30 }, "hotspots": [{ "id": "h5", "targetSceneId": "atrium", "yaw": -135, "pitch": 0, "label": "Atrium" }, { "id": "h6", "targetSceneId": "lobi", "yaw": 180, "pitch": 0, "label": "Lobi" }] }
+      {
+        "id": "lobi",
+        "name": "Lobi",
+        "imageUrl": "https://pannellum.org/images/cerro-toco-0.jpg",
+        "position": {
+          "x": 50,
+          "y": 80
+        },
+        "hotspots": [
+          {
+            "id": "h1",
+            "targetSceneId": "atrium",
+            "yaw": 0,
+            "pitch": 0,
+            "label": "Atrium"
+          },
+          {
+            "id": "h2",
+            "targetSceneId": "ofis",
+            "yaw": 90,
+            "pitch": 0,
+            "label": "Ofis Alanı"
+          }
+        ]
+      },
+      {
+        "id": "atrium",
+        "name": "Atrium",
+        "imageUrl": "https://pannellum.org/images/alma.jpg",
+        "position": {
+          "x": 50,
+          "y": 50
+        },
+        "hotspots": [
+          {
+            "id": "h3",
+            "targetSceneId": "lobi",
+            "yaw": 180,
+            "pitch": 0,
+            "label": "Lobi"
+          },
+          {
+            "id": "h4",
+            "targetSceneId": "ofis",
+            "yaw": 45,
+            "pitch": 0,
+            "label": "Ofis Alanı"
+          }
+        ]
+      },
+      {
+        "id": "ofis",
+        "name": "Ofis Alanı",
+        "imageUrl": "https://pannellum.org/images/bma-1.jpg",
+        "position": {
+          "x": 75,
+          "y": 30
+        },
+        "hotspots": [
+          {
+            "id": "h5",
+            "targetSceneId": "atrium",
+            "yaw": -135,
+            "pitch": 0,
+            "label": "Atrium"
+          },
+          {
+            "id": "h6",
+            "targetSceneId": "lobi",
+            "yaw": 180,
+            "pitch": 0,
+            "label": "Lobi"
+          }
+        ]
+      }
     ]
   },
   {
     "id": "beyaz-avlu",
     "name": "Beyaz Avlu",
-    "location": "Antalya, T\u00fcrkiye",
+    "location": "Antalya, Türkiye",
     "year": "2022",
-    "category": "\u0130\u00e7 Mek\u00e2n",
+    "category": "İç Mekân",
     "heroImage": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
     "thumbnail": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?q=80&w=900&auto=format&fit=crop",
     "area": "1.250 m2",
-    "role": "\u0130\u00e7 Mek\u00e2n Tasar\u0131m",
+    "role": "İç Mekân Tasarım",
     "software": "SketchUp, V-Ray",
     "story": [
-      "\u0130\u00e7 mek\u00e2n, tek bir avlu etraf\u0131nda dola\u015fan ayd\u0131nl\u0131k hacimler \u00fczerine kurguland\u0131.",
-      "Beyaz tonlar ve ince dokular, g\u00fcn boyu de\u011fi\u015fen \u0131\u015f\u0131\u011f\u0131 yans\u0131tarak mek\u00e2n\u0131 ayd\u0131nl\u0131k tutar.",
-      "Sirk\u00fclasyon, avlu boyunca panoramik bir rota yarat\u0131r ve kullan\u0131c\u0131y\u0131 mek\u00e2n\u0131n kalbine ta\u015f\u0131r."
+      "İç mekân, tek bir avlu etrafında dolaşan aydınlık hacimler üzerine kurgulandı.",
+      "Beyaz tonlar ve ince dokular, gün boyu değişen ışığı yansıtarak mekânı aydınlık tutar.",
+      "Sirkülasyon, avlu boyunca panoramik bir rota yaratır ve kullanıcıyı mekânın kalbine taşır."
     ],
     "gallery": [
       "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
@@ -92,30 +297,102 @@
     ],
     "topView": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1400&auto=format&fit=crop",
     "tourScenes": [
-      { "id": "avlu", "title": "Avlu", "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?q=80&w=1600&auto=format&fit=crop", "next": ["hol"] },
-      { "id": "hol", "title": "Hol", "image": "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1600&auto=format&fit=crop", "next": ["avlu"] }
+      {
+        "id": "avlu",
+        "title": "Avlu",
+        "image": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?q=80&w=1600&auto=format&fit=crop",
+        "next": [
+          "hol"
+        ]
+      },
+      {
+        "id": "hol",
+        "title": "Hol",
+        "image": "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1600&auto=format&fit=crop",
+        "next": [
+          "avlu"
+        ]
+      }
     ],
     "panoramaScenes": [
-      { "id": "avlu", "name": "\u0130\u00e7 Avlu", "imageUrl": "https://pannellum.org/images/jfk.jpg", "position": { "x": 50, "y": 50 }, "hotspots": [{ "id": "h1", "targetSceneId": "hol", "yaw": 0, "pitch": 0, "label": "Ana Hol" }, { "id": "h2", "targetSceneId": "yatak", "yaw": 90, "pitch": 0, "label": "Yatak Odas\u0131" }] },
-      { "id": "hol", "name": "Ana Hol", "imageUrl": "https://pannellum.org/images/cerro-toco-0.jpg", "position": { "x": 50, "y": 25 }, "hotspots": [{ "id": "h3", "targetSceneId": "avlu", "yaw": 180, "pitch": 0, "label": "\u0130\u00e7 Avlu" }] },
-      { "id": "yatak", "name": "Yatak Odas\u0131", "imageUrl": "https://pannellum.org/images/alma.jpg", "position": { "x": 80, "y": 50 }, "hotspots": [{ "id": "h4", "targetSceneId": "avlu", "yaw": -90, "pitch": 0, "label": "\u0130\u00e7 Avlu" }] }
+      {
+        "id": "avlu",
+        "name": "İç Avlu",
+        "imageUrl": "https://pannellum.org/images/jfk.jpg",
+        "position": {
+          "x": 50,
+          "y": 50
+        },
+        "hotspots": [
+          {
+            "id": "h1",
+            "targetSceneId": "hol",
+            "yaw": 0,
+            "pitch": 0,
+            "label": "Ana Hol"
+          },
+          {
+            "id": "h2",
+            "targetSceneId": "yatak",
+            "yaw": 90,
+            "pitch": 0,
+            "label": "Yatak Odası"
+          }
+        ]
+      },
+      {
+        "id": "hol",
+        "name": "Ana Hol",
+        "imageUrl": "https://pannellum.org/images/cerro-toco-0.jpg",
+        "position": {
+          "x": 50,
+          "y": 25
+        },
+        "hotspots": [
+          {
+            "id": "h3",
+            "targetSceneId": "avlu",
+            "yaw": 180,
+            "pitch": 0,
+            "label": "İç Avlu"
+          }
+        ]
+      },
+      {
+        "id": "yatak",
+        "name": "Yatak Odası",
+        "imageUrl": "https://pannellum.org/images/alma.jpg",
+        "position": {
+          "x": 80,
+          "y": 50
+        },
+        "hotspots": [
+          {
+            "id": "h4",
+            "targetSceneId": "avlu",
+            "yaw": -90,
+            "pitch": 0,
+            "label": "İç Avlu"
+          }
+        ]
+      }
     ]
   },
   {
     "id": "lagun-park",
     "name": "Lagun Park",
-    "location": "Mu\u011fla, T\u00fcrkiye",
+    "location": "Muğla, Türkiye",
     "year": "2021",
     "category": "Kentsel",
     "heroImage": "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1600&auto=format&fit=crop",
     "thumbnail": "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=900&auto=format&fit=crop",
     "area": "62.000 m2",
-    "role": "Kentsel Tasar\u0131m",
+    "role": "Kentsel Tasarım",
     "software": "AutoCAD, Rhino",
     "story": [
-      "K\u0131y\u0131ya paralel uzanan promenad, su kenar\u0131nda nefes alan bir kamusal hat olu\u015fturur.",
-      "Ye\u015fil cepler ve g\u00f6zlem teraslar\u0131, peyzajla mimariyi tek bir ak\u0131\u015fta bulu\u015fturur.",
-      "Gece ayd\u0131nlatmalar\u0131, g\u00fcvenli ve yava\u015f bir y\u00fcr\u00fcy\u00fc\u015f deneyimi sunar."
+      "Kıyıya paralel uzanan promenad, su kenarında nefes alan bir kamusal hat oluşturur.",
+      "Yeşil cepler ve gözlem terasları, peyzajla mimariyi tek bir akışta buluşturur.",
+      "Gece aydınlatmaları, güvenli ve yavaş bir yürüyüş deneyimi sunar."
     ],
     "gallery": [
       "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1600&auto=format&fit=crop",
@@ -125,13 +402,99 @@
     ],
     "topView": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop",
     "tourScenes": [
-      { "id": "promenad", "title": "Promenad", "image": "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1600&auto=format&fit=crop", "next": ["teras"] },
-      { "id": "teras", "title": "Teras", "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop", "next": ["promenad"] }
+      {
+        "id": "promenad",
+        "title": "Promenad",
+        "image": "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1600&auto=format&fit=crop",
+        "next": [
+          "teras"
+        ]
+      },
+      {
+        "id": "teras",
+        "title": "Teras",
+        "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop",
+        "next": [
+          "promenad"
+        ]
+      }
     ],
     "panoramaScenes": [
-      { "id": "promenad", "name": "Promenad", "imageUrl": "https://pannellum.org/images/bma-1.jpg", "position": { "x": 30, "y": 50 }, "hotspots": [{ "id": "h1", "targetSceneId": "gozlem", "yaw": 45, "pitch": 0, "label": "G\u00f6zlem Teras\u0131" }, { "id": "h2", "targetSceneId": "sahil", "yaw": -45, "pitch": 0, "label": "Sahil Y\u00fcr\u00fcy\u00fc\u015f\u00fc" }] },
-      { "id": "gozlem", "name": "G\u00f6zlem Teras\u0131", "imageUrl": "https://pannellum.org/images/jfk.jpg", "position": { "x": 60, "y": 30 }, "hotspots": [{ "id": "h3", "targetSceneId": "promenad", "yaw": -135, "pitch": 0, "label": "Promenad" }, { "id": "h4", "targetSceneId": "sahil", "yaw": 90, "pitch": 0, "label": "Sahil" }] },
-      { "id": "sahil", "name": "Sahil Y\u00fcr\u00fcy\u00fc\u015f\u00fc", "imageUrl": "https://pannellum.org/images/cerro-toco-0.jpg", "position": { "x": 70, "y": 70 }, "hotspots": [{ "id": "h5", "targetSceneId": "promenad", "yaw": 135, "pitch": 0, "label": "Promenad" }, { "id": "h6", "targetSceneId": "gozlem", "yaw": -90, "pitch": 0, "label": "G\u00f6zlem Teras\u0131" }] }
+      {
+        "id": "promenad",
+        "name": "Promenad",
+        "imageUrl": "https://pannellum.org/images/bma-1.jpg",
+        "position": {
+          "x": 30,
+          "y": 50
+        },
+        "hotspots": [
+          {
+            "id": "h1",
+            "targetSceneId": "gozlem",
+            "yaw": 45,
+            "pitch": 0,
+            "label": "Gözlem Terası"
+          },
+          {
+            "id": "h2",
+            "targetSceneId": "sahil",
+            "yaw": -45,
+            "pitch": 0,
+            "label": "Sahil Yürüyüşü"
+          }
+        ]
+      },
+      {
+        "id": "gozlem",
+        "name": "Gözlem Terası",
+        "imageUrl": "https://pannellum.org/images/jfk.jpg",
+        "position": {
+          "x": 60,
+          "y": 30
+        },
+        "hotspots": [
+          {
+            "id": "h3",
+            "targetSceneId": "promenad",
+            "yaw": -135,
+            "pitch": 0,
+            "label": "Promenad"
+          },
+          {
+            "id": "h4",
+            "targetSceneId": "sahil",
+            "yaw": 90,
+            "pitch": 0,
+            "label": "Sahil"
+          }
+        ]
+      },
+      {
+        "id": "sahil",
+        "name": "Sahil Yürüyüşü",
+        "imageUrl": "https://pannellum.org/images/cerro-toco-0.jpg",
+        "position": {
+          "x": 70,
+          "y": 70
+        },
+        "hotspots": [
+          {
+            "id": "h5",
+            "targetSceneId": "promenad",
+            "yaw": 135,
+            "pitch": 0,
+            "label": "Promenad"
+          },
+          {
+            "id": "h6",
+            "targetSceneId": "gozlem",
+            "yaw": -90,
+            "pitch": 0,
+            "label": "Gözlem Terası"
+          }
+        ]
+      }
     ]
   }
 ]

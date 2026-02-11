@@ -105,6 +105,89 @@ export default function ProjectForm({ initialData, title }: ProjectFormProps) {
     }));
   }
 
+  // Panorama scenes yönetimi
+  function addPanoramaScene() {
+    const scenes = form.panoramaScenes || [];
+    setForm((prev) => ({
+      ...prev,
+      panoramaScenes: [
+        ...scenes,
+        {
+          id: `sahne-${Date.now()}`,
+          name: "",
+          imageUrl: "",
+          position: { x: 50, y: 50 },
+          hotspots: [],
+        },
+      ],
+    }));
+  }
+  function updatePanoramaScene(
+    index: number,
+    field: "id" | "name" | "imageUrl",
+    value: string
+  ) {
+    const scenes = [...(form.panoramaScenes || [])];
+    scenes[index] = { ...scenes[index], [field]: value };
+    setForm((prev) => ({ ...prev, panoramaScenes: scenes }));
+  }
+  function updatePanoramaScenePosition(
+    index: number,
+    axis: "x" | "y",
+    value: number
+  ) {
+    const scenes = [...(form.panoramaScenes || [])];
+    scenes[index] = {
+      ...scenes[index],
+      position: { ...scenes[index].position, [axis]: value },
+    };
+    setForm((prev) => ({ ...prev, panoramaScenes: scenes }));
+  }
+  function removePanoramaScene(index: number) {
+    const scenes = (form.panoramaScenes || []).filter((_, i) => i !== index);
+    setForm((prev) => ({ ...prev, panoramaScenes: scenes }));
+  }
+  function addHotspot(sceneIndex: number) {
+    const scenes = [...(form.panoramaScenes || [])];
+    const scene = scenes[sceneIndex];
+    scenes[sceneIndex] = {
+      ...scene,
+      hotspots: [
+        ...scene.hotspots,
+        {
+          id: `h-${Date.now()}`,
+          targetSceneId: "",
+          yaw: 0,
+          pitch: 0,
+          label: "",
+        },
+      ],
+    };
+    setForm((prev) => ({ ...prev, panoramaScenes: scenes }));
+  }
+  function updateHotspot(
+    sceneIndex: number,
+    hotspotIndex: number,
+    field: "targetSceneId" | "yaw" | "pitch" | "label",
+    value: string | number
+  ) {
+    const scenes = [...(form.panoramaScenes || [])];
+    const hotspots = [...scenes[sceneIndex].hotspots];
+    hotspots[hotspotIndex] = { ...hotspots[hotspotIndex], [field]: value };
+    scenes[sceneIndex] = { ...scenes[sceneIndex], hotspots };
+    setForm((prev) => ({ ...prev, panoramaScenes: scenes }));
+  }
+  function removeHotspot(sceneIndex: number, hotspotIndex: number) {
+    const scenes = [...(form.panoramaScenes || [])];
+    scenes[sceneIndex] = {
+      ...scenes[sceneIndex],
+      hotspots: scenes[sceneIndex].hotspots.filter(
+        (_, i) => i !== hotspotIndex
+      ),
+    };
+    setForm((prev) => ({ ...prev, panoramaScenes: scenes }));
+  }
+
   async function handleSubmit() {
     setError("");
     setSaving(true);
@@ -360,100 +443,343 @@ export default function ProjectForm({ initialData, title }: ProjectFormProps) {
 
         {/* ============ STEP 3: 360° Tur ============ */}
         {step === 3 && (
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <label className={labelClass}>Tur Sahneleri</label>
-                <p className="text-xs text-[var(--ink-muted)]">
-                  Ziyaretçilerin gezebileceği sahneler (opsiyonel)
-                </p>
+          <div className="space-y-6">
+            {/* ---- Panorama Sahneleri (asıl 360° viewer) ---- */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <label className={labelClass}>360° Panorama Sahneleri</label>
+                  <p className="text-xs text-[var(--ink-muted)]">
+                    Gezinti sayfasında gösterilecek 360° sahneler
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={addPanoramaScene}
+                  className="rounded-lg bg-[var(--accent)] px-3 py-1.5 text-xs font-medium text-white transition hover:bg-[var(--accent-deep)]"
+                >
+                  + Sahne Ekle
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={addTourScene}
-                className="text-xs font-medium text-[var(--accent)] hover:underline"
-              >
-                + Sahne Ekle
-              </button>
+
+              {(!form.panoramaScenes || form.panoramaScenes.length === 0) && (
+                <div className="rounded-xl border border-dashed border-[var(--line)] p-8 text-center">
+                  <p className="text-sm text-[var(--ink-muted)]">
+                    Henüz 360° sahne eklenmemiş.
+                  </p>
+                  <p className="text-xs text-[var(--ink-muted)] mt-1">
+                    Equirectangular (2:1) panorama görselleri yükleyin.
+                  </p>
+                </div>
+              )}
+
+              {(form.panoramaScenes || []).map((scene, si) => (
+                <div
+                  key={`pano-${si}`}
+                  className="rounded-xl border border-[var(--line)] bg-white/60 p-4 space-y-3 mt-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-[var(--ink)]">
+                      Sahne {si + 1}: {scene.name || "(isimsiz)"}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => removePanoramaScene(si)}
+                      className="text-xs text-red-500 hover:underline"
+                    >
+                      Sahneyi Sil
+                    </button>
+                  </div>
+
+                  {/* Temel bilgiler */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="mb-1 block text-xs text-[var(--ink-muted)]">
+                        Sahne ID (benzersiz)
+                      </label>
+                      <input
+                        className={inputClass}
+                        value={scene.id}
+                        onChange={(e) =>
+                          updatePanoramaScene(si, "id", e.target.value)
+                        }
+                        placeholder="ör: salon"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-xs text-[var(--ink-muted)]">
+                        Sahne Adı
+                      </label>
+                      <input
+                        className={inputClass}
+                        value={scene.name}
+                        onChange={(e) =>
+                          updatePanoramaScene(si, "name", e.target.value)
+                        }
+                        placeholder="ör: Salon"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Görsel yükleme */}
+                  <ImageUploader
+                    label="360° Panorama Görseli"
+                    hint="(Equirectangular 2:1 format)"
+                    value={scene.imageUrl ? [scene.imageUrl] : []}
+                    onChange={(urls) =>
+                      updatePanoramaScene(si, "imageUrl", urls[0] || "")
+                    }
+                    subfolder={
+                      form.name
+                        ? `${form.name
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}/panorama`
+                        : "panorama"
+                    }
+                    single
+                  />
+
+                  {/* Mini harita pozisyonu */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="mb-1 block text-xs text-[var(--ink-muted)]">
+                        Harita X (%)
+                      </label>
+                      <input
+                        type="number"
+                        min={0}
+                        max={100}
+                        className={inputClass}
+                        value={scene.position.x}
+                        onChange={(e) =>
+                          updatePanoramaScenePosition(
+                            si,
+                            "x",
+                            Number(e.target.value)
+                          )
+                        }
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-xs text-[var(--ink-muted)]">
+                        Harita Y (%)
+                      </label>
+                      <input
+                        type="number"
+                        min={0}
+                        max={100}
+                        className={inputClass}
+                        value={scene.position.y}
+                        onChange={(e) =>
+                          updatePanoramaScenePosition(
+                            si,
+                            "y",
+                            Number(e.target.value)
+                          )
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  {/* Hotspotlar */}
+                  <div className="border-t border-[var(--line)] pt-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-medium text-[var(--ink)]">
+                        Hotspot&apos;lar ({scene.hotspots.length})
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => addHotspot(si)}
+                        className="text-xs font-medium text-[var(--accent)] hover:underline"
+                      >
+                        + Hotspot Ekle
+                      </button>
+                    </div>
+
+                    {scene.hotspots.map((hs, hi) => (
+                      <div
+                        key={`hs-${si}-${hi}`}
+                        className="mb-2 rounded-lg border border-[var(--line)] bg-[var(--paper)]/50 p-3"
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs text-[var(--ink-muted)]">
+                            Hotspot {hi + 1}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => removeHotspot(si, hi)}
+                            className="text-xs text-red-500 hover:underline"
+                          >
+                            Sil
+                          </button>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div>
+                            <label className="mb-0.5 block text-xs text-[var(--ink-muted)]">
+                              Hedef Sahne ID
+                            </label>
+                            <select
+                              className={inputClass}
+                              value={hs.targetSceneId}
+                              onChange={(e) =>
+                                updateHotspot(
+                                  si,
+                                  hi,
+                                  "targetSceneId",
+                                  e.target.value
+                                )
+                              }
+                            >
+                              <option value="">Seçin...</option>
+                              {(form.panoramaScenes || [])
+                                .filter((_, idx) => idx !== si)
+                                .map((s) => (
+                                  <option key={s.id} value={s.id}>
+                                    {s.name || s.id}
+                                  </option>
+                                ))}
+                            </select>
+                          </div>
+                          <div>
+                            <label className="mb-0.5 block text-xs text-[var(--ink-muted)]">
+                              Etiket
+                            </label>
+                            <input
+                              className={inputClass}
+                              value={hs.label || ""}
+                              onChange={(e) =>
+                                updateHotspot(
+                                  si,
+                                  hi,
+                                  "label",
+                                  e.target.value
+                                )
+                              }
+                              placeholder="ör: Salon"
+                            />
+                          </div>
+                          <div>
+                            <label className="mb-0.5 block text-xs text-[var(--ink-muted)]">
+                              Yaw (derece)
+                            </label>
+                            <input
+                              type="number"
+                              className={inputClass}
+                              value={hs.yaw}
+                              onChange={(e) =>
+                                updateHotspot(
+                                  si,
+                                  hi,
+                                  "yaw",
+                                  Number(e.target.value)
+                                )
+                              }
+                            />
+                          </div>
+                          <div>
+                            <label className="mb-0.5 block text-xs text-[var(--ink-muted)]">
+                              Pitch (derece)
+                            </label>
+                            <input
+                              type="number"
+                              className={inputClass}
+                              value={hs.pitch}
+                              onChange={(e) =>
+                                updateHotspot(
+                                  si,
+                                  hi,
+                                  "pitch",
+                                  Number(e.target.value)
+                                )
+                              }
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {form.tourScenes.length === 0 && (
-              <div className="rounded-xl border border-dashed border-[var(--line)] p-8 text-center">
-                <p className="text-sm text-[var(--ink-muted)]">
-                  Henüz sahne eklenmemiş. 360° tur eklemek isterseniz sahne
-                  ekleyin.
-                </p>
-              </div>
-            )}
-
-            {form.tourScenes.map((scene, i) => (
-              <div
-                key={scene.id}
-                className="rounded-xl border border-[var(--line)] bg-[var(--paper)]/50 p-4"
-              >
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="text-sm font-medium text-[var(--ink)]">
-                    Sahne {i + 1}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => removeTourScene(i)}
-                    className="text-xs text-red-500 hover:underline"
-                  >
-                    Kaldır
-                  </button>
+            {/* ---- Basit Tur Sahneleri (opsiyonel, eski yapı) ---- */}
+            <div className="border-t border-[var(--line)] pt-6">
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <label className={labelClass}>Basit Tur Sahneleri (opsiyonel)</label>
+                  <p className="text-xs text-[var(--ink-muted)]">
+                    Proje detay sayfasındaki ek gezinti görselleri
+                  </p>
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
+                <button
+                  type="button"
+                  onClick={addTourScene}
+                  className="text-xs font-medium text-[var(--accent)] hover:underline"
+                >
+                  + Sahne Ekle
+                </button>
+              </div>
+
+              {form.tourScenes.map((scene, i) => (
+                <div
+                  key={scene.id}
+                  className="mt-2 rounded-xl border border-[var(--line)] bg-[var(--paper)]/50 p-4"
+                >
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-sm font-medium text-[var(--ink)]">
+                      Sahne {i + 1}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => removeTourScene(i)}
+                      className="text-xs text-red-500 hover:underline"
+                    >
+                      Kaldır
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="mb-1 block text-xs text-[var(--ink-muted)]">
+                        Sahne ID
+                      </label>
+                      <input
+                        className={inputClass}
+                        value={scene.id}
+                        onChange={(e) =>
+                          updateTourScene(i, "id", e.target.value)
+                        }
+                        placeholder="ör: salon"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-xs text-[var(--ink-muted)]">
+                        Başlık
+                      </label>
+                      <input
+                        className={inputClass}
+                        value={scene.title}
+                        onChange={(e) =>
+                          updateTourScene(i, "title", e.target.value)
+                        }
+                        placeholder="ör: Salon"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-3">
                     <label className="mb-1 block text-xs text-[var(--ink-muted)]">
-                      Sahne ID
+                      Görsel URL
                     </label>
                     <input
                       className={inputClass}
-                      value={scene.id}
+                      value={scene.image}
                       onChange={(e) =>
-                        updateTourScene(i, "id", e.target.value)
+                        updateTourScene(i, "image", e.target.value)
                       }
-                      placeholder="ör: salon"
-                    />
-                  </div>
-                  <div>
-                    <label className="mb-1 block text-xs text-[var(--ink-muted)]">
-                      Başlık
-                    </label>
-                    <input
-                      className={inputClass}
-                      value={scene.title}
-                      onChange={(e) =>
-                        updateTourScene(i, "title", e.target.value)
-                      }
-                      placeholder="ör: Salon"
+                      placeholder="Görsel URL'si"
                     />
                   </div>
                 </div>
-                <div className="mt-3">
-                  <label className="mb-1 block text-xs text-[var(--ink-muted)]">
-                    Görsel URL
-                  </label>
-                  <input
-                    className={inputClass}
-                    value={scene.image}
-                    onChange={(e) =>
-                      updateTourScene(i, "image", e.target.value)
-                    }
-                    placeholder="Görsel URL'si"
-                  />
-                </div>
-              </div>
-            ))}
-
-            <div className="mt-4 rounded-xl border border-blue-100 bg-blue-50/50 p-4">
-              <p className="text-xs text-blue-700">
-                <strong>Not:</strong> 360° panorama sahneleri (PanoramaViewer
-                için) daha gelişmiş bir yapıdır. Şimdilik basit tur sahneleri
-                ekleyebilirsiniz. Panorama sahneleri JSON dosyasından manuel
-                düzenlenebilir.
-              </p>
+              ))}
             </div>
           </div>
         )}
@@ -512,7 +838,8 @@ export default function ProjectForm({ initialData, title }: ProjectFormProps) {
               <div>
                 <span className="text-[var(--ink-muted)]">Tur:</span>{" "}
                 <span className="font-medium">
-                  {form.tourScenes.length} sahne
+                  {(form.panoramaScenes || []).length} panorama,{" "}
+                  {form.tourScenes.length} basit sahne
                 </span>
               </div>
             </div>
