@@ -1,24 +1,19 @@
 import type { Metadata } from "next";
-import { Manrope, Sora } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
-const sora = Sora({
-  variable: "--font-sora",
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex",
   subsets: ["latin"],
   display: "swap",
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Namli Konutlari",
-  description: "Zamana direnci mekanlar tasarlayan mimarlik studyo.",
+  title: "Namlı Konutları",
+  description: "Zamana dirençli mekânlar tasarlayan mimarlık stüdyosu.",
 };
 
 export default function RootLayout({
@@ -28,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <body className={`${sora.variable} ${manrope.variable} antialiased`}>
+      <body className={`${plexSans.variable} antialiased`}>
         <div className="page-shell">
           <Header />
           <main className="flex-1">{children}</main>

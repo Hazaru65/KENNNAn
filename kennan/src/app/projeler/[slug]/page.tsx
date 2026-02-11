@@ -22,9 +22,9 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
     return (
       <div className="section-pad pt-12">
         <div className="max-wrap">
-          <h1 className="text-3xl font-semibold">Proje bulunamadi.</h1>
+          <h1 className="text-3xl font-semibold">Proje bulunamadı.</h1>
           <Link href="/projeler" className="btn-ghost mt-6">
-            Projelere Don
+            Projelere Dön
           </Link>
         </div>
       </div>
@@ -46,7 +46,7 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
           </div>
           <div className="space-y-6">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--ink-muted)]">
-              Proje Detayi
+              Proje Detayı
             </p>
             <h1 className="text-4xl font-semibold text-[color:var(--ink)]">
               {project.name}
@@ -59,7 +59,7 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
                 </span>
               </div>
               <div className="flex items-center justify-between border-b border-[color:var(--line)] pb-2">
-                <span>Yil</span>
+                <span>Yıl</span>
                 <span className="font-semibold text-[color:var(--ink)]">
                   {project.year}
                 </span>
@@ -77,14 +77,14 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
                 </span>
               </div>
               <div className="flex items-center justify-between border-b border-[color:var(--line)] pb-2">
-                <span>Yazilimlar</span>
+                <span>Yazılımlar</span>
                 <span className="font-semibold text-[color:var(--ink)]">
                   {project.software}
                 </span>
               </div>
             </div>
             <Link href={`/projeler/${project.id}/gezinti`} className="btn-primary">
-              3B Gezintiye Basla
+              3B Gezintiye Başla
             </Link>
           </div>
         </section>
@@ -92,7 +92,7 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
         <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5 text-[color:var(--ink-muted)]">
             <h2 className="text-3xl font-semibold text-[color:var(--ink)]">
-              Proje Hikayesi
+              Proje Hikâyesi
             </h2>
             {project.story.map((paragraph) => (
               <p key={paragraph} className="text-base leading-7">
@@ -105,9 +105,9 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
               Hedefler
             </h3>
             <ul className="mt-4 space-y-3 text-sm text-[color:var(--ink-muted)]">
-              <li>Dogal isik ve ruzgarin yolculugunu optimize etmek.</li>
-              <li>Kullanicinin gunluk ritmine uyumlu akilli mekan kurgusu.</li>
-              <li>Malzeme paletinde zamansiz ve dogal tonlar.</li>
+              <li>Doğal ışık ve rüzgârın yolculuğunu optimize etmek.</li>
+              <li>Kullanıcının günlük ritmine uyumlu akıllı mekân kurgusu.</li>
+              <li>Malzeme paletinde zamansız ve doğal tonlar.</li>
             </ul>
           </div>
         </section>
@@ -116,10 +116,10 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--ink-muted)]">
-                Gorseller
+                Görseller
               </p>
               <h2 className="text-3xl font-semibold text-[color:var(--ink)]">
-                Mekanin dogal akisina yakindan bakis.
+                Mekânın doğal akışına yakından bakış.
               </h2>
             </div>
             <button
@@ -127,7 +127,7 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
               className="btn-ghost text-xs"
               onClick={() => setOpen(true)}
             >
-              Tumunu Gor
+              Tümünü Gör
             </button>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
@@ -143,7 +143,7 @@ export default function ProjectDetail({ params }: ProjectDetailProps) {
               >
                 <Image
                   src={image}
-                  alt={`${project.name} gorsel ${index + 1}`}
+                  alt={`${project.name} görsel ${index + 1}`}
                   fill
                   className="object-cover"
                 />

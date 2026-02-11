@@ -13,8 +13,8 @@ export default function Footer() {
         <div className="space-y-3">
           <h3 className="text-lg font-semibold tracking-[0.3em]">NAMLI</h3>
           <p className="text-sm text-[color:var(--ink-muted)]">
-            Mekanlariniza deger katan mimari cozumler icin bizimle iletisime
-            gecin.
+            Mekânlarınıza değer katan mimari çözümler için bizimle iletişime
+            geçin.
           </p>
           <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--ink)]">
             info@namlikonutlari.com
@@ -24,7 +24,7 @@ export default function Footer() {
         </div>
         <div>
           <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--ink-muted)]">
-            Sosyal
+              Sosyal
           </h4>
           <div className="mt-4 flex flex-col gap-3 text-sm font-semibold uppercase tracking-[0.18em]">
             {social.map((item) => (
@@ -40,11 +40,11 @@ export default function Footer() {
         </div>
         <div className="space-y-2 text-sm text-[color:var(--ink-muted)]">
           <p className="text-xs font-semibold uppercase tracking-[0.3em]">
-            Notlar
+              Notlar
           </p>
-          <p>Proje gorselleri ve metinleri placeholder olarak sunulmustur.</p>
+          <p>Proje görselleri ve metinleri placeholder olarak sunulmuştur.</p>
           <p className="text-xs">
-            (c) 2026 Namli Konutlari. Tum haklari saklidir.
+            © 2026 Namlı Konutları. Tüm hakları saklıdır.
           </p>
         </div>
       </div>

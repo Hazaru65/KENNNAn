@@ -1,6 +1,6 @@
 "use client";
 
-type FilterOption = "Tum" | "Konut" | "Ticari" | "Ic Mekan" | "Kentsel";
+type FilterOption = "Tüm" | "Konut" | "Ticari" | "İç Mekân" | "Kentsel";
 
 type ProjectFilterProps = {
   current: FilterOption;
@@ -8,10 +8,10 @@ type ProjectFilterProps = {
 };
 
 const options: FilterOption[] = [
-  "Tum",
+  "Tüm",
   "Konut",
   "Ticari",
-  "Ic Mekan",
+  "İç Mekân",
   "Kentsel",
 ];
 

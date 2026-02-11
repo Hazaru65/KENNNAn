@@ -1,9 +1,25 @@
+export type PanoramaHotspot = {
+  id: string;
+  targetSceneId: string;
+  yaw: number;      // -180 to 180 degrees
+  pitch: number;    // -90 to 90 degrees
+  label?: string;
+};
+
+export type PanoramaScene = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  position: { x: number; y: number };  // Position on mini-map (%)
+  hotspots: PanoramaHotspot[];
+};
+
 export type Project = {
   id: string;
   name: string;
   location: string;
   year: string;
-  category: "Konut" | "Ticari" | "Ic Mekan" | "Kentsel";
+  category: "Konut" | "Ticari" | "İç Mekân" | "Kentsel";
   heroImage: string;
   thumbnail: string;
   area: string;
@@ -18,24 +34,25 @@ export type Project = {
     image: string;
     next?: string[];
   }[];
+  panoramaScenes?: PanoramaScene[];
 };
 
 export const projects: Project[] = [
   {
     id: "sahil-yali",
-    name: "Sahil Yalisi",
-    location: "Izmir, Turkiye",
+    name: "Sahil Yalısı",
+    location: "İzmir, Türkiye",
     year: "2024",
     category: "Konut",
     heroImage: "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1600&auto=format&fit=crop",
     thumbnail: "https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=900&auto=format&fit=crop",
     area: "4.200 m2",
-    role: "Mimari Tasarim + Uygulama",
+    role: "Mimari Tasarım + Uygulama",
     software: "Revit, Rhino, Lumion",
     story: [
-      "Denizle kurdugu iliski, yapinin her hattinda akiskan bir ritim yaratir. Yapinin kurgusu, gun isigini iceriye davet ederken ruzgarin yonunu da dikkate alir.",
-      "Konutun ana omurgasi kuzeye dogru bir galeriyle genisler. Zemin kat acik ve yari acik hacimler arasinda esnek bir dolasim sunar.",
-      "Malzeme seciminde dogal tas ve sicak ahsap birlikte kullanildi. Bu ikili, mekanin sade ama zamansiz karakterini guclendirir.",
+      "Denizle kurduğu ilişki, yapının her hattında akışkan bir ritim yaratır. Yapının kurgusu, gün ışığını içeriye davet ederken rüzgarın yönünü de dikkate alır.",
+      "Konutun ana omurgası kuzeye doğru bir galeriyle genişler. Zemin kat açık ve yarı açık hacimler arasında esnek bir dolaşım sunar.",
+      "Malzeme seçiminde doğal taş ve sıcak ahşap birlikte kullanıldı. Bu ikili, mekânın sade ama zamansız karakterini güçlendirir.",
     ],
     gallery: [
       "https://images.unsplash.com/photo-1502005097973-6a7082348e28?q=80&w=1600&auto=format&fit=crop",
@@ -48,7 +65,7 @@ export const projects: Project[] = [
     tourScenes: [
       {
         id: "giris",
-        title: "Giris Avlusu",
+        title: "Giriş Avlusu",
         image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
         next: ["salon", "teras"],
       },
@@ -65,11 +82,53 @@ export const projects: Project[] = [
         next: ["giris"],
       },
     ],
+    panoramaScenes: [
+      {
+        id: "giris",
+        name: "Giriş Holü",
+        imageUrl: "https://pannellum.org/images/cerro-toco-0.jpg",
+        position: { x: 30, y: 70 },
+        hotspots: [
+          { id: "h1", targetSceneId: "salon", yaw: 45, pitch: 0, label: "Salon" },
+          { id: "h2", targetSceneId: "mutfak", yaw: -90, pitch: 0, label: "Mutfak" },
+        ],
+      },
+      {
+        id: "salon",
+        name: "Salon",
+        imageUrl: "https://pannellum.org/images/alma.jpg",
+        position: { x: 50, y: 50 },
+        hotspots: [
+          { id: "h3", targetSceneId: "giris", yaw: -135, pitch: 0, label: "Giriş" },
+          { id: "h4", targetSceneId: "teras", yaw: 90, pitch: 0, label: "Teras" },
+          { id: "h5", targetSceneId: "mutfak", yaw: -45, pitch: 0, label: "Mutfak" },
+        ],
+      },
+      {
+        id: "mutfak",
+        name: "Mutfak",
+        imageUrl: "https://pannellum.org/images/bma-1.jpg",
+        position: { x: 25, y: 40 },
+        hotspots: [
+          { id: "h6", targetSceneId: "giris", yaw: 90, pitch: 0, label: "Giriş" },
+          { id: "h7", targetSceneId: "salon", yaw: 45, pitch: 0, label: "Salon" },
+        ],
+      },
+      {
+        id: "teras",
+        name: "Teras",
+        imageUrl: "https://pannellum.org/images/jfk.jpg",
+        position: { x: 75, y: 35 },
+        hotspots: [
+          { id: "h8", targetSceneId: "salon", yaw: -90, pitch: 0, label: "Salon" },
+        ],
+      },
+    ],
   },
   {
     id: "kent-kulesi",
     name: "Kent Kulesi",
-    location: "Ankara, Turkiye",
+    location: "Ankara, Türkiye",
     year: "2023",
     category: "Ticari",
     heroImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
@@ -78,9 +137,9 @@ export const projects: Project[] = [
     role: "Konsept + Mimari",
     software: "Revit, 3ds Max, Twinmotion",
     story: [
-      "Kentin yogun dokusu icinde yukselen kule, yalin bir siluet ve dengeli bir cephe ritmiyle tanimlanir.",
-      "Icteki programlar katlara duzenli sekilde dagilirken ortak alanlar manzara odakli kurgulanmistir.",
-      "Cephede kullanilan metal mesh, gunes kontrolunu saglarken gece gorunumunde opak bir parilti yaratir.",
+      "Kentin yoğun dokusu içinde yükselen kule, yalın bir siluet ve dengeli bir cephe ritmiyle tanımlanır.",
+      "İçteki programlar katlara düzenli şekilde dağılırken ortak alanlar manzara odaklı kurgulanmıştır.",
+      "Cephede kullanılan metal mesh, güneş kontrolünü sağlarken gece görünümünde opak bir parıltı yaratır.",
     ],
     gallery: [
       "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1600&auto=format&fit=crop",
@@ -103,22 +162,54 @@ export const projects: Project[] = [
         next: ["lobi"],
       },
     ],
+    panoramaScenes: [
+      {
+        id: "lobi",
+        name: "Lobi",
+        imageUrl: "https://pannellum.org/images/cerro-toco-0.jpg",
+        position: { x: 50, y: 80 },
+        hotspots: [
+          { id: "h1", targetSceneId: "atrium", yaw: 0, pitch: 0, label: "Atrium" },
+          { id: "h2", targetSceneId: "ofis", yaw: 90, pitch: 0, label: "Ofis Alanı" },
+        ],
+      },
+      {
+        id: "atrium",
+        name: "Atrium",
+        imageUrl: "https://pannellum.org/images/alma.jpg",
+        position: { x: 50, y: 50 },
+        hotspots: [
+          { id: "h3", targetSceneId: "lobi", yaw: 180, pitch: 0, label: "Lobi" },
+          { id: "h4", targetSceneId: "ofis", yaw: 45, pitch: 0, label: "Ofis Alanı" },
+        ],
+      },
+      {
+        id: "ofis",
+        name: "Ofis Alanı",
+        imageUrl: "https://pannellum.org/images/bma-1.jpg",
+        position: { x: 75, y: 30 },
+        hotspots: [
+          { id: "h5", targetSceneId: "atrium", yaw: -135, pitch: 0, label: "Atrium" },
+          { id: "h6", targetSceneId: "lobi", yaw: 180, pitch: 0, label: "Lobi" },
+        ],
+      },
+    ],
   },
   {
     id: "beyaz-avlu",
     name: "Beyaz Avlu",
-    location: "Antalya, Turkiye",
+    location: "Antalya, Türkiye",
     year: "2022",
-    category: "Ic Mekan",
+    category: "İç Mekân",
     heroImage: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
     thumbnail: "https://images.unsplash.com/photo-1502005097973-6a7082348e28?q=80&w=900&auto=format&fit=crop",
     area: "1.250 m2",
-    role: "Ic Mekan Tasarim",
+    role: "İç Mekân Tasarım",
     software: "SketchUp, V-Ray",
     story: [
-      "Ic mekan, tek bir avlu etrafinda dolasan aydinlik hacimler uzerine kurgulandi.",
-      "Beyaz tonlar ve ince dokular, gun boyu degisen isigi yansitarak mekani aydinlik tutar.",
-      "Sirkulasyon, avlu boyunca panoramik bir rota yaratir ve kullaniciyi mekanin kalbine tasir.",
+      "İç mekân, tek bir avlu etrafında dolaşan aydınlık hacimler üzerine kurgulandı.",
+      "Beyaz tonlar ve ince dokular, gün boyu değişen ışığı yansıtarak mekânı aydınlık tutar.",
+      "Sirkülasyon, avlu boyunca panoramik bir rota yaratır ve kullanıcıyı mekânın kalbine taşır.",
     ],
     gallery: [
       "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
@@ -141,22 +232,52 @@ export const projects: Project[] = [
         next: ["avlu"],
       },
     ],
+    panoramaScenes: [
+      {
+        id: "avlu",
+        name: "İç Avlu",
+        imageUrl: "https://pannellum.org/images/jfk.jpg",
+        position: { x: 50, y: 50 },
+        hotspots: [
+          { id: "h1", targetSceneId: "hol", yaw: 0, pitch: 0, label: "Ana Hol" },
+          { id: "h2", targetSceneId: "yatak", yaw: 90, pitch: 0, label: "Yatak Odası" },
+        ],
+      },
+      {
+        id: "hol",
+        name: "Ana Hol",
+        imageUrl: "https://pannellum.org/images/cerro-toco-0.jpg",
+        position: { x: 50, y: 25 },
+        hotspots: [
+          { id: "h3", targetSceneId: "avlu", yaw: 180, pitch: 0, label: "İç Avlu" },
+        ],
+      },
+      {
+        id: "yatak",
+        name: "Yatak Odası",
+        imageUrl: "https://pannellum.org/images/alma.jpg",
+        position: { x: 80, y: 50 },
+        hotspots: [
+          { id: "h4", targetSceneId: "avlu", yaw: -90, pitch: 0, label: "İç Avlu" },
+        ],
+      },
+    ],
   },
   {
     id: "lagun-park",
     name: "Lagun Park",
-    location: "Mugla, Turkiye",
+    location: "Muğla, Türkiye",
     year: "2021",
     category: "Kentsel",
     heroImage: "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1600&auto=format&fit=crop",
     thumbnail: "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=900&auto=format&fit=crop",
     area: "62.000 m2",
-    role: "Kentsel Tasarim",
+    role: "Kentsel Tasarım",
     software: "AutoCAD, Rhino",
     story: [
-      "Kiyiya paralel uzanan promenad, su kenarinda nefes alan bir kamusal hat olusturur.",
-      "Yesil cepler ve gozlem teraslari, peyzajla mimariyi tek bir akista bulusturur.",
-      "Gece aydinlatmalari, guvenli ve yavas bir yuruyus deneyimi sunar.",
+      "Kıyıya paralel uzanan promenad, su kenarında nefes alan bir kamusal hat oluşturur.",
+      "Yeşil cepler ve gözlem terasları, peyzajla mimariyi tek bir akışta buluşturur.",
+      "Gece aydınlatmaları, güvenli ve yavaş bir yürüyüş deneyimi sunar.",
     ],
     gallery: [
       "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1600&auto=format&fit=crop",
@@ -177,6 +298,38 @@ export const projects: Project[] = [
         title: "Teras",
         image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop",
         next: ["promenad"],
+      },
+    ],
+    panoramaScenes: [
+      {
+        id: "promenad",
+        name: "Promenad",
+        imageUrl: "https://pannellum.org/images/bma-1.jpg",
+        position: { x: 30, y: 50 },
+        hotspots: [
+          { id: "h1", targetSceneId: "gozlem", yaw: 45, pitch: 0, label: "Gözlem Terası" },
+          { id: "h2", targetSceneId: "sahil", yaw: -45, pitch: 0, label: "Sahil Yürüyüşü" },
+        ],
+      },
+      {
+        id: "gozlem",
+        name: "Gözlem Terası",
+        imageUrl: "https://pannellum.org/images/jfk.jpg",
+        position: { x: 60, y: 30 },
+        hotspots: [
+          { id: "h3", targetSceneId: "promenad", yaw: -135, pitch: 0, label: "Promenad" },
+          { id: "h4", targetSceneId: "sahil", yaw: 90, pitch: 0, label: "Sahil" },
+        ],
+      },
+      {
+        id: "sahil",
+        name: "Sahil Yürüyüşü",
+        imageUrl: "https://pannellum.org/images/cerro-toco-0.jpg",
+        position: { x: 70, y: 70 },
+        hotspots: [
+          { id: "h5", targetSceneId: "promenad", yaw: 135, pitch: 0, label: "Promenad" },
+          { id: "h6", targetSceneId: "gozlem", yaw: -90, pitch: 0, label: "Gözlem Terası" },
+        ],
       },
     ],
   },

@@ -6,8 +6,8 @@ import { useState } from "react";
 const nav = [
   { label: "Ana Sayfa", href: "/" },
   { label: "Projeler", href: "/projeler" },
-  { label: "Hakkinda", href: "/#hakkinda" },
-  { label: "Iletisim", href: "/#iletisim" },
+  { label: "Hakkımızda", href: "/#hakkinda" },
+  { label: "İletişim", href: "/#iletisim" },
 ];
 
 export default function Header() {

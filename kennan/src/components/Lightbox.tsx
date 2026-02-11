@@ -42,13 +42,13 @@ export default function Lightbox({
         onClick={onPrev}
         className="absolute left-4 md:left-10 rounded-full border border-white/40 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white"
       >
-        Onceki
+        Önceki
       </button>
       <div className="relative w-full max-w-5xl">
         <div className="overflow-hidden rounded-3xl border border-white/20">
           <Image
             src={images[currentIndex]}
-            alt="Proje gorseli"
+            alt="Proje görseli"
             width={1600}
             height={1000}
             className="h-[70vh] w-full object-cover"

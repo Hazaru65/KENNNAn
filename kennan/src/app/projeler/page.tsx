@@ -5,14 +5,23 @@ import ProjectCard from "@/components/ProjectCard";
 import ProjectFilter from "@/components/ProjectFilter";
 import { projects } from "@/data/projects";
 
-type FilterOption = "Tum" | "Konut" | "Ticari" | "Ic Mekan" | "Kentsel";
+type FilterOption = "Tüm" | "Konut" | "Ticari" | "İç Mekân" | "Kentsel";
 
 export default function ProjectsPage() {
-  const [filter, setFilter] = useState<FilterOption>("Tum");
+  const [filter, setFilter] = useState<FilterOption>("Tüm");
 
   const items = useMemo(() => {
-    if (filter === "Tum") return projects;
-    return projects.filter((project) => project.category === filter);
+    if (filter === "Tüm") return projects;
+    const categoryMap: Record<FilterOption, string> = {
+      "Tüm": "",
+      Konut: "Konut",
+      Ticari: "Ticari",
+      "İç Mekân": "İç Mekân",
+      Kentsel: "Kentsel",
+    };
+    return projects.filter(
+      (project) => project.category === categoryMap[filter]
+    );
   }, [filter]);
 
   return (
@@ -23,10 +32,10 @@ export default function ProjectsPage() {
             Portfolyo
           </p>
           <h1 className="text-4xl font-semibold text-[color:var(--ink)]">
-            Tum Projeler
+            Tüm Projeler
           </h1>
           <p className="max-w-2xl text-base text-[color:var(--ink-muted)]">
-            Donemlere, olcege ve mekansal deneyime gore secilmis projeler.
+            Dönemlere, ölçeğe ve mekânsal deneyime göre seçilmiş projeler.
           </p>
         </div>
         <ProjectFilter current={filter} onChange={setFilter} />
