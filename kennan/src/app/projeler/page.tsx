@@ -1,14 +1,23 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectFilter from "@/components/ProjectFilter";
-import { projects } from "@/data/projects";
+import { fetchProjects, type Project } from "@/data/projects";
 
 type FilterOption = "Tüm" | "Konut" | "Ticari" | "İç Mekân" | "Kentsel";
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<FilterOption>("Tüm");
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProjects().then((data) => {
+      setProjects(data);
+      setLoading(false);
+    });
+  }, []);
 
   const items = useMemo(() => {
     if (filter === "Tüm") return projects;
@@ -22,7 +31,7 @@ export default function ProjectsPage() {
     return projects.filter(
       (project) => project.category === categoryMap[filter]
     );
-  }, [filter]);
+  }, [filter, projects]);
 
   return (
     <div className="section-pad pt-12">
@@ -39,18 +48,24 @@ export default function ProjectsPage() {
           </p>
         </div>
         <ProjectFilter current={filter} onChange={setFilter} />
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {items.map((project) => (
-            <ProjectCard
-              key={project.id}
-              name={project.name}
-              location={project.location}
-              year={project.year}
-              image={project.thumbnail}
-              href={`/projeler/${project.id}`}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <div className="flex items-center justify-center py-20">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[color:var(--accent)] border-t-transparent" />
+          </div>
+        ) : (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {items.map((project) => (
+              <ProjectCard
+                key={project.id}
+                name={project.name}
+                location={project.location}
+                year={project.year}
+                image={project.thumbnail}
+                href={`/projeler/${project.id}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

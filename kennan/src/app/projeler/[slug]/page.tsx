@@ -1,22 +1,37 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Lightbox from "@/components/Lightbox";
-import { projects } from "@/data/projects";
+import { fetchProjects, type Project } from "@/data/projects";
 
 type ProjectDetailProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export default function ProjectDetail({ params }: ProjectDetailProps) {
-  const project = useMemo(
-    () => projects.find((item) => item.id === params.slug),
-    [params.slug]
-  );
+  const resolvedParams = use(params);
+  const [project, setProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    fetchProjects().then((projects) => {
+      const found = projects.find((item) => item.id === resolvedParams.slug);
+      setProject(found || null);
+      setLoading(false);
+    });
+  }, [resolvedParams.slug]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-40">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[color:var(--accent)] border-t-transparent" />
+      </div>
+    );
+  }
 
   if (!project) {
     return (

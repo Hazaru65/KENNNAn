@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState, use } from "react";
+import { useEffect, useState, use } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { projects } from "@/data/projects";
+import { fetchProjects, type Project } from "@/data/projects";
 
 // Dynamic import for PanoramaViewer (client-side only)
 const PanoramaViewer = dynamic(() => import("@/components/PanoramaViewer"), {
@@ -24,13 +24,28 @@ type TourPageProps = {
 
 export default function TourPage({ params }: TourPageProps) {
   const resolvedParams = use(params);
-  const project = useMemo(
-    () => projects.find((item) => item.id === resolvedParams.slug),
-    [resolvedParams.slug]
-  );
-  const [activeSceneId, setActiveSceneId] = useState(
-    project?.panoramaScenes?.[0]?.id ?? ""
-  );
+  const [project, setProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [activeSceneId, setActiveSceneId] = useState("");
+
+  useEffect(() => {
+    fetchProjects().then((projects) => {
+      const found = projects.find((item) => item.id === resolvedParams.slug);
+      setProject(found || null);
+      if (found?.panoramaScenes?.[0]) {
+        setActiveSceneId(found.panoramaScenes[0].id);
+      }
+      setLoading(false);
+    });
+  }, [resolvedParams.slug]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-40">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[color:var(--accent)] border-t-transparent" />
+      </div>
+    );
+  }
 
   if (!project) {
     return (

@@ -1,8 +1,9 @@
 import Link from "next/link";
 import ProjectCard from "@/components/ProjectCard";
-import { featuredProjects } from "@/data/projects";
+import { getFeaturedProjects } from "@/data/projects.server";
 
-export default function Home() {
+export default async function Home() {
+  const featuredProjects = await getFeaturedProjects();
   return (
     <div className="page-shell">
       {/* Hero Section */}
