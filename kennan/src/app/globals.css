@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #1c1916;
+  --ink-muted: #5a554f;
+  --paper: #f7f2ea;
+  --paper-strong: #efe7db;
+  --line: #e2d9cb;
+  --accent: #c97144;
+  --accent-deep: #a95833;
+  --accent-cool: #2e5f5b;
+  --shadow: 0 16px 40px rgba(21, 18, 15, 0.12);
+}
+
+@theme inline {
+  --font-sans: var(--font-sora);
+  --font-body: var(--font-manrope);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(180deg, #f7f2ea 0%, #f1eadf 45%, #f7f2ea 100%);
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(28, 25, 22, 0.08) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-sans), sans-serif;
+}
+
+.page-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@layer utilities {
+  .section-pad {
+    @apply px-6 sm:px-10 lg:px-16;
+  }
+
+  .max-wrap {
+    @apply mx-auto w-full max-w-6xl;
+  }
+
+  .card {
+    @apply rounded-3xl border border-[color:var(--line)] bg-white/80 backdrop-blur;
+    box-shadow: var(--shadow);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] transition-all duration-300 ease-out;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+    color: #fffaf5;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(201, 113, 68, 0.25);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] transition-all duration-300 ease-out;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+  }
+
+  .btn-ghost:hover {
+    background: var(--ink);
+    color: #fdf8f3;
+  }
+
+  .fade-up {
+    animation: fadeUp 0.6s ease-out both;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
