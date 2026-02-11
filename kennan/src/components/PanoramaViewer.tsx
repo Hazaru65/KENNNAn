@@ -5,55 +5,28 @@ import type { PanoramaScene } from "@/data/projects";
 
 // Import CSS at the top level
 import "@photo-sphere-viewer/core/index.css";
-import "@photo-sphere-viewer/markers-plugin/index.css";
 
 // Dynamic import will be used to load PSV
 type ViewerType = import("@photo-sphere-viewer/core").Viewer;
-type MarkersPluginType = import("@photo-sphere-viewer/markers-plugin").MarkersPlugin;
 
 interface PanoramaViewerProps {
   scenes: PanoramaScene[];
   initialSceneId?: string;
   onSceneChange?: (sceneId: string) => void;
-  topViewImage?: string;
 }
 
 export default function PanoramaViewer({
   scenes,
   initialSceneId,
   onSceneChange,
-  topViewImage,
 }: PanoramaViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<ViewerType | null>(null);
-  const markersPluginRef = useRef<MarkersPluginType | null>(null);
   const [currentSceneId, setCurrentSceneId] = useState(initialSceneId || scenes[0]?.id);
   const [isLoading, setIsLoading] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const currentScene = scenes.find((s) => s.id === currentSceneId) || scenes[0];
-
-  const updateMarkers = useCallback((scene: PanoramaScene) => {
-    if (!markersPluginRef.current) return;
-
-    markersPluginRef.current.clearMarkers();
-
-    scene.hotspots.forEach((hotspot) => {
-      markersPluginRef.current?.addMarker({
-        id: hotspot.id,
-        position: { yaw: `${hotspot.yaw}deg`, pitch: `${hotspot.pitch}deg` },
-        html: `
-          <div class="panorama-hotspot" data-target="${hotspot.targetSceneId}">
-            <div class="hotspot-ring"></div>
-            <div class="hotspot-center"></div>
-            ${hotspot.label ? `<span class="hotspot-label">${hotspot.label}</span>` : ""}
-          </div>
-        `,
-        anchor: "center center",
-        data: { targetSceneId: hotspot.targetSceneId },
-      });
-    });
-  }, []);
 
   const navigateToScene = useCallback((sceneId: string) => {
     const scene = scenes.find((s) => s.id === sceneId);
@@ -65,9 +38,8 @@ export default function PanoramaViewer({
 
     viewerRef.current.setPanorama(scene.imageUrl).then(() => {
       setIsLoading(false);
-      updateMarkers(scene);
     });
-  }, [scenes, onSceneChange, updateMarkers]);
+  }, [scenes, onSceneChange]);
 
   // Initialize viewer
   useEffect(() => {
@@ -78,7 +50,6 @@ export default function PanoramaViewer({
     const initViewer = async () => {
       // Dynamic imports for SSR compatibility
       const { Viewer } = await import("@photo-sphere-viewer/core");
-      const { MarkersPlugin } = await import("@photo-sphere-viewer/markers-plugin");
 
       if (!isMounted || !containerRef.current) return;
 
@@ -97,29 +68,14 @@ export default function PanoramaViewer({
         defaultPitch: 0,
         minFov: 30,
         maxFov: 90,
-        plugins: [
-          [MarkersPlugin, {
-            markers: [],
-          }],
-        ],
       });
 
       viewerRef.current = viewer;
-      markersPluginRef.current = viewer.getPlugin(MarkersPlugin) as MarkersPluginType;
-
-      // Handle marker clicks
-      markersPluginRef.current.addEventListener("select-marker", (e) => {
-        const targetSceneId = e.marker.data?.targetSceneId;
-        if (targetSceneId) {
-          navigateToScene(targetSceneId);
-        }
-      });
 
       // Handle ready event
       viewer.addEventListener("ready", () => {
         if (isMounted) {
           setIsLoading(false);
-          updateMarkers(currentScene);
         }
       });
 
@@ -143,7 +99,7 @@ export default function PanoramaViewer({
         viewerRef.current = null;
       }
     };
-  }, [currentScene, navigateToScene, updateMarkers]);
+  }, [currentScene, navigateToScene]);
 
   // Update scene when currentSceneId changes externally
   useEffect(() => {
@@ -201,30 +157,8 @@ export default function PanoramaViewer({
         </div>
       </div>
 
-      {/* Mini Map & Scene List */}
+      {/* Scene List */}
       <div className="panorama-sidebar">
-        {/* Mini Map */}
-        {topViewImage && (
-          <div className="panorama-minimap">
-            <h4>Konum</h4>
-            <div className="minimap-container">
-              <img src={topViewImage} alt="Plan görünümü" />
-              {scenes.map((scene) => (
-                <button
-                  key={scene.id}
-                  className={`minimap-point ${scene.id === currentSceneId ? "active" : ""}`}
-                  style={{ left: `${scene.position.x}%`, top: `${scene.position.y}%` }}
-                  onClick={() => navigateToScene(scene.id)}
-                  title={scene.name}
-                >
-                  <span className="point-pulse" />
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Scene List */}
         <div className="panorama-scenes">
           <h4>Mekanlar</h4>
           <div className="scene-list">
@@ -348,13 +282,14 @@ export default function PanoramaViewer({
           gap: 1.5rem;
         }
 
-        .panorama-minimap {
+        .panorama-scenes {
+          flex: 1;
           background: var(--paper-strong);
           border-radius: 12px;
           padding: 1rem;
+          overflow: auto;
         }
 
-        .panorama-minimap h4,
         .panorama-scenes h4 {
           margin: 0 0 0.75rem 0;
           font-size: 0.875rem;
@@ -362,59 +297,6 @@ export default function PanoramaViewer({
           color: var(--ink-muted);
           text-transform: uppercase;
           letter-spacing: 0.05em;
-        }
-
-        .minimap-container {
-          position: relative;
-          aspect-ratio: 4/3;
-          border-radius: 8px;
-          overflow: hidden;
-        }
-
-        .minimap-container img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .minimap-point {
-          position: absolute;
-          width: 20px;
-          height: 20px;
-          transform: translate(-50%, -50%);
-          background: var(--accent);
-          border: 2px solid white;
-          border-radius: 50%;
-          cursor: pointer;
-          transition: all 0.2s;
-          z-index: 5;
-        }
-
-        .minimap-point:hover,
-        .minimap-point.active {
-          transform: translate(-50%, -50%) scale(1.2);
-          box-shadow: 0 0 0 4px rgba(201, 113, 68, 0.3);
-        }
-
-        .minimap-point.active .point-pulse {
-          position: absolute;
-          inset: -6px;
-          border: 2px solid var(--accent);
-          border-radius: 50%;
-          animation: pulse 2s ease-out infinite;
-        }
-
-        @keyframes pulse {
-          0% { transform: scale(1); opacity: 1; }
-          100% { transform: scale(2); opacity: 0; }
-        }
-
-        .panorama-scenes {
-          flex: 1;
-          background: var(--paper-strong);
-          border-radius: 12px;
-          padding: 1rem;
-          overflow: auto;
         }
 
         .scene-list {
@@ -475,15 +357,6 @@ export default function PanoramaViewer({
           .panorama-container {
             height: 50vh;
             min-height: 300px;
-          }
-
-          .panorama-sidebar {
-            flex-direction: row;
-          }
-
-          .panorama-minimap,
-          .panorama-scenes {
-            flex: 1;
           }
         }
 

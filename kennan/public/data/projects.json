@@ -55,7 +55,7 @@
       {
         "id": "giris",
         "name": "Giriş Holü",
-        "imageUrl": "https://pannellum.org/images/cerro-toco-0.jpg",
+        "imageUrl": "/uploads/sahil-yalisi-panorama/whatsapp-image-2026-02-11-at-20.56.05-1--1770834617498.jpeg",
         "position": {
           "x": 30,
           "y": 70
@@ -151,6 +151,11 @@
             "label": "Salon"
           }
         ]
+      },
+      {
+        "id": "sahne-1770835375268",
+        "name": "ağaç",
+        "imageUrl": "/uploads/sahil-yalisi-panorama/whatsapp-image-2026-02-11-at-20.56.05-1--1770835383975.jpeg"
       }
     ]
   },

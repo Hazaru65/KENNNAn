@@ -10,8 +10,8 @@ export type PanoramaScene = {
   id: string;
   name: string;
   imageUrl: string;
-  position: { x: number; y: number };
-  hotspots: PanoramaHotspot[];
+  position?: { x: number; y: number };
+  hotspots?: PanoramaHotspot[];
 };
 
 export type Project = {

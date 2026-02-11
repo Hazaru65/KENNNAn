@@ -134,10 +134,9 @@ export default function TourPage({ params }: TourPageProps) {
           </div>
           <div className="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z" />
             </svg>
-            <span>Hotspot: Mekân değiştir</span>
+            <span>Mekanlar: Listeden seçin</span>
           </div>
         </div>
 
@@ -146,7 +145,6 @@ export default function TourPage({ params }: TourPageProps) {
           scenes={project.panoramaScenes}
           initialSceneId={activeSceneId}
           onSceneChange={setActiveSceneId}
-          topViewImage={project.topView}
         />
 
         {/* Project Info */}
