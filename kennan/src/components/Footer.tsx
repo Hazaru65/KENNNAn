@@ -1,9 +1,7 @@
 import Link from "next/link";
 
 const social = [
-  { label: "Instagram", href: "#" },
-  { label: "Behance", href: "#" },
-  { label: "LinkedIn", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/kenan_nml/" },
 ];
 
 export default function Footer() {
@@ -17,14 +15,14 @@ export default function Footer() {
             geçin.
           </p>
           <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--ink)]">
-            info@namlikonutlari.com
+            kenannemli95@gmail.com
             <span className="mx-2 text-[color:var(--line)]">/</span>
-            +90 555 000 00 00
+            +90 544 475 93 65
           </div>
         </div>
         <div>
           <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--ink-muted)]">
-              Sosyal
+            Sosyal
           </h4>
           <div className="mt-4 flex flex-col gap-3 text-sm font-semibold uppercase tracking-[0.18em]">
             {social.map((item) => (
@@ -40,7 +38,7 @@ export default function Footer() {
         </div>
         <div className="space-y-2 text-sm text-[color:var(--ink-muted)]">
           <p className="text-xs font-semibold uppercase tracking-[0.3em]">
-              Notlar
+            Notlar
           </p>
           <p>Proje görselleri ve metinleri placeholder olarak sunulmuştur.</p>
           <p className="text-xs">

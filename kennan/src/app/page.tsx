@@ -49,19 +49,17 @@ export default async function Home() {
               Yaklaşım
             </p>
             <h2 className="text-3xl font-semibold text-[color:var(--ink)]">
-              Mimariyi estetik ve işlevsellikle buluşturuyoruz.
+              Geleneksel portfolyonun sınırlarını kaldırıyoruz.
             </h2>
             <p className="text-base text-[color:var(--ink-muted)]">
-              Alanın ruhunu ortaya çıkaran yalın mekânlar üretiriz. Her projede
-              doğal ışık, malzeme dengesi ve mekânsal akışı birlikte ele
-              alıyoruz.
+              Tasarladığım mekanları sadece izlemeye değil, deneyimlemeye davetlisiniz.
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-3 lg:grid-cols-1">
-            {["Konut Tasarımı", "İç Mekân", "Kentsel Tasarım"].map((item) => (
+            {["Kavramsal Tasarımı", "360° Görselleştirme", "Mimari Analiz & Pafta"].map((item) => (
               <div key={item} className="card p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--ink-muted)]">
-                  Servis
+                  hizmet
                 </p>
                 <h3 className="mt-3 text-xl font-semibold text-[color:var(--ink)]">
                   {item}
