@@ -114,18 +114,13 @@ export default async function Home() {
                   Hakkımızda
                 </p>
                 <h2 className="text-3xl font-semibold text-[color:var(--ink)]">
-                  Zamana dirençli mekânlar tasarlayan bir stüdyo.
+                  Mekânın Ruhunu Dijital Deneyimle Keşfedin.
                 </h2>
                 <p className="text-base text-[color:var(--ink-muted)]">
-                  Virtual Studio, 2010 yılından bu yana konut, ticari ve kentsel
-                  projelerde estetik ile işlevselliği bir araya getiren bir mimarlık
-                  stüdyosudur. Her projede sürdürülebilirlik, kullanıcı deneyimi ve
-                  zamansız tasarım ilkelerini önceliklendiririz.
+                  Geleneksel mimari sunum tekniklerini dijital dünyanın imkânlarıyla birleştiriyorum. Benim için bir proje; sadece iki boyutlu paftalardan ibaret değil, içinde yaşanacak bir atmosferdir.
                 </p>
                 <p className="text-base text-[color:var(--ink-muted)]">
-                  Müşterilerimizle kurduğumuz yakın iş birliği sayesinde, her projeyi
-                  özgün ihtiyaçlara göre şekillendiriyor; mekânların sadece bugün değil,
-                  gelecek nesiller için de değerli olmasını sağlıyoruz.
+                  Bu platformda, tasarladığım projeleri sadece görsellerle değil, 360 derecelik panoramik turlarla deneyimleyebilir; tasarımın her detayına, ışığına ve dokusuna yakından tanık olabilirsiniz.
                 </p>
               </div>
               <div className="space-y-6">
