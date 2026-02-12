@@ -33,7 +33,7 @@ export default async function Home() {
               className="absolute inset-0 bg-cover bg-center"
               style={{
                 backgroundImage:
-                  "url(https://images.unsplash.com/photo-1448630360428-65456885c650?q=80&w=1600&auto=format&fit=crop)",
+                  "url(https://i.ibb.co/9kK22Ygg/1-F0-B3-CF7-05-C9-467-C-92-B4-84613-E6342-C2.png",
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-black/10 to-transparent" />
@@ -105,11 +105,12 @@ export default async function Home() {
       </section>
 
       {/* Hakkımızda Section */}
-      <section id="hakkinda" className="section-pad mt-16">
+      <section id="hakkinda" className="section-pad mt-16 mb-20">
         <div className="max-wrap">
           <div className="card p-8 md:p-12">
-            <div className="grid gap-10 lg:grid-cols-2">
-              <div className="space-y-4">
+            <div className="space-y-10">
+              {/* Hakkımızda — ortalı */}
+              <div className="mx-auto max-w-2xl text-center space-y-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--ink-muted)]">
                   Hakkımızda
                 </p>
@@ -123,39 +124,20 @@ export default async function Home() {
                   Bu platformda, tasarladığım projeleri sadece görsellerle değil, 360 derecelik panoramik turlarla deneyimleyebilir; tasarımın her detayına, ışığına ve dokusuna yakından tanık olabilirsiniz.
                 </p>
               </div>
-              <div className="space-y-6">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <p className="text-4xl font-semibold text-[color:var(--accent)]">15+</p>
-                    <p className="text-sm text-[color:var(--ink-muted)]">Yıllık Deneyim</p>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-4xl font-semibold text-[color:var(--accent)]">200+</p>
-                    <p className="text-sm text-[color:var(--ink-muted)]">Tamamlanan Proje</p>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-4xl font-semibold text-[color:var(--accent)]">12</p>
-                    <p className="text-sm text-[color:var(--ink-muted)]">Mimar & Tasarımcı</p>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-4xl font-semibold text-[color:var(--accent)]">8</p>
-                    <p className="text-sm text-[color:var(--ink-muted)]">Ödül & Tanınırlık</p>
-                  </div>
-                </div>
-                <div className="pt-4 border-t border-[color:var(--line)]">
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--ink-muted)] mb-3">
-                    Değerlerimiz
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {["Estetik", "Sürdürülebilirlik", "İşlevsellik", "Yenilik", "Detay"].map((value) => (
-                      <span
-                        key={value}
-                        className="px-4 py-2 text-sm rounded-full border border-[color:var(--line)] text-[color:var(--ink-muted)]"
-                      >
-                        {value}
-                      </span>
-                    ))}
-                  </div>
+              {/* Değerlerimiz — ortalı */}
+              <div className="pt-6 border-t border-[color:var(--line)] text-center">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--ink-muted)] mb-4">
+                  Değerlerimiz
+                </p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {["Estetik", "Sürdürülebilirlik", "İşlevsellik", "Yenilik", "Detay"].map((value) => (
+                    <span
+                      key={value}
+                      className="px-4 py-2 text-sm rounded-full border border-[color:var(--line)] text-[color:var(--ink-muted)] transition-colors hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
+                    >
+                      {value}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
