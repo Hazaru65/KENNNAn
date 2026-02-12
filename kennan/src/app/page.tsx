@@ -33,7 +33,7 @@ export default async function Home() {
               className="absolute inset-0 bg-cover bg-center"
               style={{
                 backgroundImage:
-                  "url(https://i.ibb.co/9kK22Ygg/1-F0-B3-CF7-05-C9-467-C-92-B4-84613-E6342-C2.png",
+                  "url(https://images.unsplash.com/photo-1448630360428-65456885c650?q=80&w=1600&auto=format&fit=crop)",
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-black/10 to-transparent" />
