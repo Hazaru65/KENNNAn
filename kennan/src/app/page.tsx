@@ -11,10 +11,10 @@ export default async function Home() {
         <div className="max-wrap grid gap-12 pt-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-8 fade-up">
             <div className="text-xs font-semibold uppercase tracking-[0.35em] text-[color:var(--ink-muted)]">
-              Mimari Stüdyo
+              Mimari Portfolyo
             </div>
             <h1 className="text-4xl font-semibold leading-tight text-[color:var(--ink)] sm:text-5xl lg:text-6xl">
-              NAMLI KONUTLARI
+              VIRTUAL STUDIO
             </h1>
             <p className="max-w-xl text-lg text-[color:var(--ink-muted)]">
               Zamana dirençli mekânlar tasarlıyoruz.
@@ -119,14 +119,14 @@ export default async function Home() {
                   Zamana dirençli mekânlar tasarlayan bir stüdyo.
                 </h2>
                 <p className="text-base text-[color:var(--ink-muted)]">
-                  Namlı Konutları, 2010 yılından bu yana konut, ticari ve kentsel 
-                  projelerde estetik ile işlevselliği bir araya getiren bir mimarlık 
-                  stüdyosudur. Her projede sürdürülebilirlik, kullanıcı deneyimi ve 
+                  Virtual Studio, 2010 yılından bu yana konut, ticari ve kentsel
+                  projelerde estetik ile işlevselliği bir araya getiren bir mimarlık
+                  stüdyosudur. Her projede sürdürülebilirlik, kullanıcı deneyimi ve
                   zamansız tasarım ilkelerini önceliklendiririz.
                 </p>
                 <p className="text-base text-[color:var(--ink-muted)]">
-                  Müşterilerimizle kurduğumuz yakın iş birliği sayesinde, her projeyi 
-                  özgün ihtiyaçlara göre şekillendiriyor; mekânların sadece bugün değil, 
+                  Müşterilerimizle kurduğumuz yakın iş birliği sayesinde, her projeyi
+                  özgün ihtiyaçlara göre şekillendiriyor; mekânların sadece bugün değil,
                   gelecek nesiller için de değerli olmasını sağlıyoruz.
                 </p>
               </div>
@@ -155,7 +155,7 @@ export default async function Home() {
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {["Estetik", "Sürdürülebilirlik", "İşlevsellik", "Yenilik", "Detay"].map((value) => (
-                      <span 
+                      <span
                         key={value}
                         className="px-4 py-2 text-sm rounded-full border border-[color:var(--line)] text-[color:var(--ink-muted)]"
                       >

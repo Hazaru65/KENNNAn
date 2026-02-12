@@ -20,7 +20,7 @@ export default function Header() {
           href="/"
           className="text-lg font-semibold tracking-[0.35em] text-[color:var(--ink)]"
         >
-          NAMLI
+          N&ML
         </Link>
         <nav className="hidden items-center gap-8 text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-muted)] md:flex">
           {nav.map((item) => (
